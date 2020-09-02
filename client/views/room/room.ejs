@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../../public/css/room.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+    <script>
+        function roomName() {
+            var url = new URL(window.location.href);
+            if (url.searchParams.get("roomName")) {
+                document.form.id.value = url.searchParams.get("roomName");
+            }
+        }
+
+        const copyToClipboard = str => {
+            const el = document.createElement('textarea');
+            el.value = str;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+        };
+
+        function copiaKey() {
+            key = document.getElementById("hidden")
+            button = document.getElementById("mostra")
+            button.classList.remove("btn-outline-danger");
+            button.classList.add("btn-success")
+            button.innerText = "api key copiata!"
+            copyToClipboard(key.innerText);
+        }
+    </script>
+
+    <title>Pinturicchio Room</title>
+</head>
+
+<body onload="roomName();">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/"><img src="../../public/assets/logo.png" style="width:75px; height: 40px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/room">Multiplayer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/free_drawing">Free drawing</a>
+                </li>
+            </ul>
+            <a href="/login/logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
+        </div>
+    </nav>
+    
+    <h1 class="display-1 text-center">Pinturicchio</h1>
+    <br />
+    <div class="content">
+        <h3>Dati personali:</h3>
+        <ul>
+            <li>Username: <%= username %> </li>
+            <li>Chiave API personale: <span id="hidden" style="display:none;"><%= api_key %></span>
+                <button id="mostra" onclick="copiaKey()" class="btn btn-sm btn-outline-danger">Copia api key su
+                    clipboard</button>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="content">
+        <h3>Accedi o crea una room</h3>
+        <br>
+        <form action="<%= room_link %>" method="POST" name="form">
+
+            <div class="row">
+
+                <div class="input-group col-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><svg width="1.3em" height="1.3em"
+                                viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" />
+                                <path fill-rule="evenodd"
+                                    d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
+                            </svg></span>
+                    </div>
+                    <input class="form-control" type="text" size="20" maxlength="10" name="id"
+                        placeholder="Nome della stanza" />
+                </div>
+                <div class="input-group col-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><svg width="1.3em" height="1.3em"
+                                viewBox="0 0 16 16" class="bi bi-shield-lock" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5.443 1.991a60.17 60.17 0 0 0-2.725.802.454.454 0 0 0-.315.366C1.87 7.056 3.1 9.9 4.567 11.773c.736.94 1.533 1.636 2.197 2.093.333.228.626.394.857.5.116.053.21.089.282.11A.73.73 0 0 0 8 14.5c.007-.001.038-.005.097-.023.072-.022.166-.058.282-.111.23-.106.525-.272.857-.5a10.197 10.197 0 0 0 2.197-2.093C12.9 9.9 14.13 7.056 13.597 3.159a.454.454 0 0 0-.315-.366c-.626-.2-1.682-.526-2.725-.802C9.491 1.71 8.51 1.5 8 1.5c-.51 0-1.49.21-2.557.491zm-.256-.966C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 0 1 2.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 0 1-2.418 2.3 6.942 6.942 0 0 1-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 0 1-1.007-.586 11.192 11.192 0 0 1-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 0 1 2.415 1.84a61.11 61.11 0 0 1 2.772-.815z" />
+                                <path d="M9.5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                <path
+                                    d="M7.411 8.034a.5.5 0 0 1 .493-.417h.156a.5.5 0 0 1 .492.414l.347 2a.5.5 0 0 1-.493.585h-.835a.5.5 0 0 1-.493-.582l.333-2z" />
+                            </svg></span>
+                    </div>
+                    <input class="form-control" type="password" size="20" name="password"
+                        placeholder="Password della stanza" />
+                    </div>
+                    
+                    <div class="col-4">
+                        <select class="custom-select my-select" name="lang" id="lang">
+                            <option value="it">Italiano</option>
+                            <option value="en">Inglese</option>
+                            <option value="es">Spagnolo</option>
+                            <option value="de">Tedesco</option>
+                          </select>
+                        <input class="btn btn-outline-primary" type="submit" value="Entra" />
+                    </div>
+                </div>
+            </form>
+            <%if (error) { %>
+            <small ><%= error %></small>
+            <% } %>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="content">
+        <h3>Disegno libero</h3>
+        <p>Inizia un nuovo disegno libero, senza altri utenti</p>
+        <a class="btn btn-outline-primary" href="/free_drawing">Avvia un disegno libero</a>
+
+    </div>
+    
+    <br /><br />
+</body>
+
+</html>

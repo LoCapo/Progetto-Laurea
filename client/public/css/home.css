@@ -1,0 +1,12 @@
+.content{
+    width: 50vw;
+    margin-left: 25vw;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 1rem;
+}
+body{
+    background: linear-gradient(rgb(129, 191, 219),rgb(255, 255, 255));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

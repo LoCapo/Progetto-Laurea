@@ -1,0 +1,32 @@
+body{
+    background: linear-gradient(rgb(129, 191, 219),rgb(255, 255, 255));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.picker{
+    height: 38px;
+}
+
+
+
+.destra {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.input-group .col-6 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.content{
+    margin-left: calc((100vw - 1000px)/2);
+    width: 1000px;
+}
+.vuecanvas{
+    border: 1px solid rgba(9, 66, 102, 0.863);
+}

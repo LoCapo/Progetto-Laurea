@@ -1,0 +1,97 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Word generator and image serving",
+    "version" : "1.0.0",
+    "title" : "Pinturicchio's API",
+    "contact" : {
+      "email" : "capobianchi.1815464@studenti.uniroma1.it"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "localhost:4000",
+  "basePath" : "/api",
+  "tags" : [ {
+    "name" : "users",
+    "description" : "Any user call."
+  }, {
+    "name" : "registered users",
+    "description" : "Any registered user with his pinturicchio's api key."
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/getRandomWord" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "gets random words",
+        "description" : "By passing in the appropriate options, you can get one or more random words in a chosen language.\n",
+        "operationId" : "getWord",
+        "produces" : [ "text/plain" ],
+        "parameters" : [ {
+          "name" : "num",
+          "in" : "query",
+          "description" : "pass the number of words to be obtained.",
+          "required" : false,
+          "type" : "integer",
+          "default" : 1
+        }, {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "pass the result's desired language.",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "enum" : [ "en", "it", "de", "es" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns a result matching criteria.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/getImage" : {
+      "get" : {
+        "tags" : [ "registered users" ],
+        "summary" : "gets an image",
+        "description" : "Gets an image you saved which contains a specified name.",
+        "operationId" : "getImage",
+        "produces" : [ "image/png" ],
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "image's name or part of it",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "api_key",
+          "in" : "query",
+          "description" : "user's api key",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "image returned"
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : { }
+}

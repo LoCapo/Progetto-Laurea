@@ -1,0 +1,21 @@
+
+body{
+    background: linear-gradient(rgb(129, 191, 219),rgb(255, 255, 255));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.content{
+    margin-left: 25vw;
+    width: 50vw;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.349);
+}
+
+label {
+    font-weight: 500;
+    color: rgb(20, 20, 20)
+}

@@ -1,0 +1,76 @@
+body{
+    background: linear-gradient(rgb(129, 191, 219),rgb(255, 255, 255));
+    min-height: 100vh;
+}
+.content{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width:90vw;
+}
+.tools{
+    width: calc(15vw + 500px);
+    float: right;
+}
+.winner{
+    height: 5vh;
+}
+.align-bottom{
+    margin-top: 48px;
+    position:bottom !important;
+}
+.canvas-wrap{
+    height: 502px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.first-row{
+    margin-left: calc(15vw + calc((45vw - 500px)/2));    
+    height: 95px !important;
+    width: 687px;
+}
+.sinistra{
+    width:15vw;
+}
+.destra{
+    width:30vw;
+}
+.centro{
+    margin-left: calc((45vw - 500px)/2);
+    margin-right: calc((45vw - 500px)/2);
+    display: flex;
+    flex-direction: column;
+}
+
+.message-box{
+    height: 20vh;
+    overflow: auto;
+    word-break: break-all;
+    border: solid 1px black;
+    background-color: rgba(255, 255, 255, 0.7);
+
+}
+
+.vuecanvas{
+    border: solid 1px black;   
+}
+
+.user-box {
+    border: solid 2px lightblue;
+}
+
+.user {
+    width: 220px;
+    padding: .5rem;
+    border: solid 1px lightgray;
+    border-radius: 10px;
+}
+
+p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+input [type=text]{
+    border-radius:15px;
+}

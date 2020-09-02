@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../../public/css/home.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+    <title>Home</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/"><img src="../../public/assets/logo.png" style="width:75px; height: 40px;" ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/room">Multiplayer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/free_drawing">Free drawing</a>
+                </li>
+            </ul>
+                <a href="<%= login_path %> " class="btn btn-outline-<%= button_color %>  my-2 my-sm-0"><%= button_text %></a>
+        </div>
+    </nav>
+
+
+    <h1 class="text-center display-1">Pinturicchio</h1>
+    <br>
+    <div class="content">
+        <h2 class=" text-center ">Nel nostro sito potrai:</h4>
+        <ul>
+            <li><h4>Giocare con i tuoi amici</h4></li>
+            <li><h4>Disegnare in solitario e salvare le tue creazioni</h4></li>
+            <li><h4>Utilizzare le nostre api REST</h4></li>
+        </ul>
+        <p>Visita la nostra <b><a href="/login">pagina di accesso</a></b> per accedere ai contenuti</p>
+    </div>
+    <br>
+</body>
+</html>

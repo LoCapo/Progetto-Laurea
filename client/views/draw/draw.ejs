@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <link rel="stylesheet" href="/public/css/draw.css">
+    <title>Gioca Ora!</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/"><img src="../../public/assets/logo.png" style="width:75px; height: 40px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/room">Multiplayer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/free_drawing">Free drawing</a>
+                </li>
+            </ul>
+            <a href="/login/logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
+        </div>
+    </nav>
+
+    <div id="app" room="<%= ROOM %>" pass="<%= PASSWORD %>" username="<%= USERNAME %>" host="<%= HOST %>">
+        <div class="content">
+            <div class="winner">
+                <Vuewinner :socket="socket"></Vuewinner>
+            </div>
+            <div class="first-row">
+                <div class="row">
+                    <div class="col">
+                        <h3>Timer round: {{timer}}</h3>
+                        <Vueword :socket="socket"></Vueword>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="sinistra">
+                    <Vueusers :socket="socket"></Vueusers>
+                </div>
+                <div class="centro">
+                    <div class="canvas-wrap">
+                        <Vuecanvas width="500" height="500" v-if="socket" ref="myCanvas" :mode="canvasMode"
+                            :key="canvasMode" :socket="socket" />
+                        </div>
+                        <div class="text-right col align-bottom">
+                            <input v-if="canvasMode == 'drawer'" type="color" @change="changeColor($event)" pattern="#[0-9A-Fa-f]{6}"
+                                placeholder="Hex Color in this format -> #000000" />
+                            <button class="btn btn-outline-warning" v-if="canvasMode == 'drawer'" id='redo' @click="redo()">Indietro</button>
+                            <button class="btn btn-outline-danger" v-if="canvasMode == 'drawer'" id='clear' @click="clear()">Elimina</button>
+                            <button class="btn btn-outline-success" v-if="canvasMode == 'drawer'" id='start'
+                                @click="start($event)">Start</button>
+                        </div>
+                    </div>
+                    <div class="destra">
+                        
+                    <Vuechat :socket="socket"></Vuechat>
+                </div>
+            </div>
+        </div>
+
+</div>
+        <script src="/public/js/draw.js"></script>
+</body>
+
+</html>
