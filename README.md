@@ -46,7 +46,8 @@ Al momento dell'iscrizione viene generato un token tramite JWT per consentire l'
     ```
     [Piano gratuito offerto da RapidApi](https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/microsoft-translator-text)
 - Per avviare i test:
-    - Aprire la directory del progetto dal terminale
+    - Aprire il file "*jest.config.js*" e modificare il campo "*testPathIgnorePatterns*" inserendo "*<rootDir>/cypress*" in cui <rootDir> rappresenta la directory del progetto
+    - Aprie un terminale e andare nella directory del progetto 
     - Digitare "*npm run test*" per avviare i test di unità e integrazione
     - Digitare "*npm run e2e*" per avviare i test End to End
     
