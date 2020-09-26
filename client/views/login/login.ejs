@@ -42,18 +42,18 @@
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Inserisci Username" required>
+                <input id="log-username" type="text" class="form-control" name="username" placeholder="Inserisci Username" required>
                 <small style=<%= errLoginUsername %> class="form-text text-muted">Questo username non è
                     registrato</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input id="log-password" type="password" class="form-control" name="password" placeholder="Password" required>
                 <small style=<%= errLoginPassword %> class="form-text text-muted">Non è la password corretta per questo
                     username</small>
 
             </div>
-            <button type="submit" class="btn btn-outline-primary">Login</button>
+            <button id="log-submit" type="submit" class="btn btn-outline-primary">Login</button>
             <a class="btn btn-outline-primary" href="/login/oauth" role="button">Login con Facebook</a>
         </form>
 
@@ -64,16 +64,16 @@
             <div class="form-group">
                 <label>Username</label>
                 <small class="form-text text-muted">Non utilizzare il carattere "-"</small>
-                <input type="text" class="form-control" name="username" placeholder="Inserisci Username" required>
+                <input id="reg-username"type="text" class="form-control" name="username" placeholder="Inserisci Username" required>
                 <small style=<%= errRegistrazioneUsername %> class="form-text text-muted">Questo username è già in
                     uso o non valido!</small>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input id="reg-password" type="password" class="form-control" name="password" placeholder="Password" required>
 
             </div>
-            <button type="submit" class="btn btn-outline-primary">Registrazione</button>
+            <button id="reg-submit" type="submit" class="btn btn-outline-primary">Registrazione</button>
         </form>
     </div>
 

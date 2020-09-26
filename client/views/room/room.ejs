@@ -59,7 +59,7 @@
                     <a class="nav-link" href="/free_drawing">Free drawing</a>
                 </li>
             </ul>
-            <a href="/login/logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
+            <a id="login-logout" href="/login/logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
         </div>
     </nav>
     
@@ -96,7 +96,7 @@
                                     d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
                             </svg></span>
                     </div>
-                    <input class="form-control" type="text" size="20" maxlength="10" name="id"
+                    <input id="room-name" class="form-control" type="text" size="20" maxlength="10" name="id"
                         placeholder="Nome della stanza" />
                 </div>
                 <div class="input-group col-4">
@@ -111,7 +111,7 @@
                                     d="M7.411 8.034a.5.5 0 0 1 .493-.417h.156a.5.5 0 0 1 .492.414l.347 2a.5.5 0 0 1-.493.585h-.835a.5.5 0 0 1-.493-.582l.333-2z" />
                             </svg></span>
                     </div>
-                    <input class="form-control" type="password" size="20" name="password"
+                    <input id="room-password" class="form-control" type="password" size="20" name="password"
                         placeholder="Password della stanza" />
                     </div>
                     
@@ -122,7 +122,7 @@
                             <option value="es">Spagnolo</option>
                             <option value="de">Tedesco</option>
                           </select>
-                        <input class="btn btn-outline-primary" type="submit" value="Entra" />
+                        <input id="room-submit" class="btn btn-outline-primary" type="submit" value="Entra" />
                     </div>
                 </div>
             </form>
@@ -136,7 +136,7 @@
     <div class="content">
         <h3>Disegno libero</h3>
         <p>Inizia un nuovo disegno libero, senza altri utenti</p>
-        <a class="btn btn-outline-primary" href="/free_drawing">Avvia un disegno libero</a>
+        <a id="disegno-libero" class="btn btn-outline-primary" href="/free_drawing">Avvia un disegno libero</a>
 
     </div>
     

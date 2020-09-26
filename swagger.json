@@ -13,7 +13,7 @@
     }
   },
   "host" : "localhost:4000",
-  "basePath" : "/api",
+  "basePath" : "/api-docs",
   "tags" : [ {
     "name" : "users",
     "description" : "Any user call."

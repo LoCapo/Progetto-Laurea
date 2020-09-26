@@ -8,13 +8,17 @@
     ],
     "transform": {
       ".*\\.(vue)$": "vue-jest"
-    }
+    },
+    "testEnvironment": "node"
   },
   "version": "1.0.0",
   "description": "REST API server for RdC project",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "e2e": "cypress open",
+    "test": "jest --maxWorkers=1 --forceExit --detectOpenHandles",
+    "ci:dev": "start-server-and-test start:dev :4000 test",
+    "ci": "start-server-and-test start :4000 test:headless"
   },
   "author": "",
   "license": "ISC",
@@ -36,9 +40,15 @@
     "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
+    "@vue/babel-preset-app": "^4.5.4",
     "@vue/test-utils": "^1.0.5",
     "babel-core": "^7.0.0-bridge.0",
+    "chai": "^4.2.0",
+    "clipboardy": "^2.3.0",
+    "cypress": "^5.2.0",
     "jest": "^26.4.2",
+    "start-server-and-test": "^1.11.4",
+    "supertest": "^4.0.2",
     "vue-jest": "^3.0.6"
   }
 }

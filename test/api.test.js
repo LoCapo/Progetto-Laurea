@@ -1,6 +1,10 @@
 const api = require('../randomWord');
+const request = require("supertest");
+const app = require("../app.js");
+const routes = require("../loaders");
 
-describe("Checking random words API", () => {
+describe("Checking random words function", () => {
+    jest.setTimeout(30000);
     test("Returns an array of one element", async () => {
         const word = await api.random(1);
         expect(word.length).toBe(1);
@@ -21,9 +25,9 @@ describe("Checking random words API", () => {
         let text = words.join(",");
         expect(text).toMatch(/.+,.+,.+/);
     });
-});
-//npm run test --detectOpenHandles
-describe("Checking translating function", () => {
+});  
+
+describe("Checking the translating function", () => {
     /*test("Translates from english to italian", async () => {
         const word = ["dog"];
         return expect(api.translate(word,"it")).resolves[0].toMatch("Cane"); */
@@ -50,5 +54,74 @@ describe("Checking translating function", () => {
         const translatedWords = await api.translate(words, "it");
         expect(translatedWords).toEqual(["cane","gatto","pesce"]);
     });
+}); 
+
+
+describe("Checking random words function", () => {
+    jest.setTimeout(30000);
+    
+    beforeEach((done) => {
+        server = app.listen(4000, (err) => {
+            if (err) return done(err);
+            agent = request.agent(server);
+            done();
+        });
+    });
+    afterEach((done) => {
+        return server && server.close(done);
+    });
+
+    test("responds with a random word if the request has no parameters", async () => {
+        const response = await agent.get("/api/getRandomWord");
+        expect(parseInt(response.header['content-length'])).toBeGreaterThan(0);
+        expect(response.body[0]).toMatch(/.+/);
+        expect(response.status).toBe(200);
+    });
+    test("responds with 'n' words if the parameter num is set to 'n'", async () => {
+        const response = await agent.get("/api/getRandomWord?num=3");
+        expect(parseInt(response.header['content-length'])).toBeGreaterThan(0);
+        expect(response.body[0]).toMatch(/.+/);
+        expect(response.body[1]).toMatch(/.+/);
+        expect(response.body[2]).toMatch(/.+/);
+        expect(response.status).toBe(200);
+    });
+    test("responds with a word of a selected language", async () => {
+        const response = await agent.get("/api/getRandomWord?lang=it");
+        expect(parseInt(response.header['content-length'])).toBeGreaterThan(0);
+        expect(response.body[0]).toMatch(/.+/);
+        expect(response.status).toBe(200);
+    });  
+
+
+    /*
+    test("responds with a random word if the request has no parameters", async () => {
+        const response = await request(app).get("/api/getRandomWord");
+        expect(parseInt(response.header['content-length'])).toBeGreaterThan(0);
+        expect(response.body[0]).toMatch(/.+/);
+        expect(response.status).toBe(200);
+    });*/
+    /*
+    test("responds with 'n' words if the parameter num is set to 'n'", async () => {
+        const response = await request(app).get("/api/getRandomWord?num=3");
+        expect(parseInt(response.header['content-length'])).toBeGreaterThan(0);
+        expect(response.body[0]).toMatch(/.+/);
+        expect(response.body[1]).toMatch(/.+/);
+        expect(response.body[2]).toMatch(/.+/);
+        expect(response.status).toBe(200);
+    });
+    */
+   /* 
+   test("responds with a word of a selected language", async () => {
+       const response = await request(app).get("/api/getRandomWord?lang=it");
+       expect(parseInt(response.header['content-length'])).toBeGreaterThan(0);
+       expect(response.body[0]).toMatch(/.+/);
+       expect(response.status).toBe(200);
+       });
+       */
 });
+
+
+
+
+
 
