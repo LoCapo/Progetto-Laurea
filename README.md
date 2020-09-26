@@ -41,8 +41,12 @@ Al momento dell'iscrizione viene generato un token tramite JWT per consentire l'
     FB_REDIRECT_URI='/login/oauth/token'
     FB_STATE='{st=state123abc,ds=123456789}'
     FB_CLIENT_SECRET=//Client secret dell'applicazione registrata su Facebook for Developers
-
+    
     TRANSLATE_KEY=//API key per l'utilizzo delle API di traduzione di Microsoft.
     ```
     [Piano gratuito offerto da RapidApi](https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/microsoft-translator-text)
-   
+- Per avviare i test:
+    - Aprire la directory del progetto dal terminale
+    - Digitare "*npm run test*" per avviare i test di unità e integrazione
+    - Digitare "*npm run e2e*" per avviare i test End to End
+    
